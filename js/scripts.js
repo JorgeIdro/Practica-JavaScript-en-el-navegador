@@ -64,7 +64,64 @@ function imprimir() { // posiblemente esta forma sirva si el código es extenso
 }
 
 // Usualmente mas se usa el cuarto "DOM", debido a que la mayoría de las veces solo requerimos que solo se cargue el HTML, solo a menos que necesitemos que se cargue mas elementos que solo el HTML debemos usar "onload" o "load"
-
+/*
 window.onscroll = function() { // cada vez que hacemos scroll se activa la función
     console.log('scrolling...');
+}
+*/
+
+// Seleccionar elementos del HTML y asociarles un evento
+// Evento de click
+const botonEnviar = document.querySelector('.boton--primario');
+botonEnviar.addEventListener('click', function(e) { // e de evento/event
+    e.preventDefault(); // previene que el boton recargue la pagina // previene el evento por default
+    // Nos podría servir para validar un formulario
+    console.log(e);
+    console.log(e.target);
+    console.log('enviando formulario...');
+});
+
+// Aunque los dos seleccionan clases diferentes, solo uno se ejecutara
+
+// Evento de submit
+const formulario = document.querySelector('.formulario');
+formulario.addEventListener('submit', function (e) { // En caso de ser un formulario debe utilizarse el submit
+    formulario.preventDefault();
+    console.log('Enviando formulario...')
+})
+
+// Eventos de los inputs y textarea
+/*
+const nombreInput = document.querySelector('#nombre');
+nombreInput.addEventListener('change', function () { // change solo detecta cuando dejas de escribir
+    console.log('escribiendo...');
+    
+})
+    */
+
+
+const datosInputs = { // Objecto global
+    nombre: '',
+    email: '',
+    mensaje: ''
+}
+const nombreInput = document.querySelector('#nombre');
+const emailInput = document.querySelector('#email');
+const mensajeInput = document.querySelector('#mensaje');
+
+nombreInput.addEventListener('input', function(e) { // input detecta cada letra o espacio que escribimos o eliminamos
+    console.log('escribiendo...');
+    console.log(e.data); // imprime todo lo que escribe el usuario letra por letra
+    //console.log(e.target.value); // imprime como va quedando lo que escribe el usuario
+    // value es la información de lo que escribe el usuario y target muestra toda la etiqueta HTML
+})
+
+// que pasa si queremos que una linea o varias estén disponibles para los demás inputs
+nombreInput.addEventListener('input', leerTexto);
+emailInput.addEventListener('input', leerTexto);
+mensajeInput.addEventListener('input', leerTexto);
+function leerTexto(e) {
+    console.log(e.target.value);
+    console.log(datosInputs);
+    datosInputs[e.target.id] = e.target.value; // Todo lo que se escriba se guarda en la propiedad con el mismo nombre del id
 }
