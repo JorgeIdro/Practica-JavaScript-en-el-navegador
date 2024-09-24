@@ -112,7 +112,7 @@ const mensajeInput = document.querySelector('#mensaje');
 nombreInput.addEventListener('input', function(e) { // input detecta cada letra o espacio que escribimos o eliminamos
     console.log('escribiendo...');
     console.log(e.data); // imprime todo lo que escribe el usuario letra por letra
-    //console.log(e.target.value); // imprime como va quedando lo que escribe el usuario
+    // console.log(e.target.value); // imprime como va quedando lo que escribe el usuario
     // value es la información de lo que escribe el usuario y target muestra toda la etiqueta HTML
 })
 
